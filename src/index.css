@@ -55,3 +55,13 @@ code {
     background-position: 100% 0;
   }
 }
+
+li {
+  list-style-type: none;
+}
+
+.results {
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}

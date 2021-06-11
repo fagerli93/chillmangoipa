@@ -7,7 +7,7 @@ const GET_RESULTS_ENDPOINTS = (fylke: string) => `fylke/${fylke}`;
 
 function App() {
   const [inputText, setInputText] = useState("");
-  const [result, setResult] = useState<string | undefined>(undefined);
+  const [result, setResult] = useState<any | undefined>(undefined);
   const [allAvailableFylker, setAllAvailableFylker] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -22,8 +22,12 @@ function App() {
         encodeURI(`${API_URL}/${GET_RESULTS_ENDPOINTS(inputText)}`)
       );
       if (res.ok) {
-        const data = await res.text();
-        setResult(data);
+        const data = await res.json();
+        setResult({
+          smahus: data.Item.Småhus,
+          boligblokk: data.Item.Blokkleiligheter,
+        });
+        setInputText("");
       }
     } catch (err) {
       alert(`Fant ingenting under ${inputText}`);
@@ -82,7 +86,13 @@ function App() {
                 ))}
             </ul>
           )}
-          {result && <span>{result}</span>}
+
+          {result && (
+            <div className="results">
+              <span>Småhus: {result.smahus},- per kvadratmeter</span>
+              <span>Boligblokk: {result.boligblokk},- per kvadratmeter</span>
+            </div>
+          )}
           <button className="button" onClick={handleOnClick}>
             Søk!
           </button>
