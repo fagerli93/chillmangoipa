@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 
 const API_URL = "https://jprasxup48.execute-api.eu-central-1.amazonaws.com";
-const GET_AVAILABLE_FYLKER_ENDPOINT = "";
+//const GET_AVAILABLE_FYLKER_ENDPOINT = "";
 const GET_RESULTS_ENDPOINTS = "fetchMangoIpas";
 
 function App() {
