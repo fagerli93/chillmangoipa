@@ -78,7 +78,9 @@ function App() {
           {inputText && inputText !== "" && (
             <ul>
               {allAvailableFylker
-                .filter((fylke) => fylke.includes(inputText))
+                .filter((fylke) =>
+                  fylke.toLowerCase().includes(inputText.toLowerCase())
+                )
                 .map((fylke) => (
                   <li key={fylke} onClick={() => handleSelectFylke(fylke)}>
                     {fylke}
